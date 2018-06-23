@@ -148,6 +148,7 @@
       "esri/widgets/ScaleBar",
       "esri/widgets/Attribution",
       "esri/widgets/layerList",
+        
       // Bootstrap
       "bootstrap/Collapse",
       "bootstrap/Dropdown",
@@ -183,16 +184,6 @@
         },
         ui: {components: []}
       });
-      
-      // LayerList
-      view.when(function() {
-        var layerList = new LayerList({
-          view: view
-      });
-
-      // Add LayerList to the top left corner of the view
-      view.ui.add(layerList, "top-left");
-      });
         
       // Popup and panel sync
       mapView.when(function(){
@@ -207,6 +198,11 @@
       CalciteMapArcGISSupport.setSearchExpandEvents(searchWidget);
 
       // Map widgets
+      var layerlist = new LayerList({
+        view: mapView
+      });
+      mapView.ui.add(layerlist, "bottom-left");  
+        
       var home = new Home({
         view: mapView
       });
