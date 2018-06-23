@@ -147,7 +147,7 @@
       "esri/widgets/BasemapToggle",
       "esri/widgets/ScaleBar",
       "esri/widgets/Attribution",
-
+      "esri/widgets/layerList",
       // Bootstrap
       "bootstrap/Collapse",
       "bootstrap/Dropdown",
@@ -158,7 +158,7 @@
       "calcite-maps/calcitemaps-arcgis-support-v0.7",
 
       "dojo/domReady!"
-    ], function(WebMap, MapView, Home, Zoom, Compass, Search, Legend, BasemapToggle, ScaleBar, Attribution,Collapse, Dropdown, CalciteMaps, CalciteMapArcGISSupport) {
+    ], function(WebMap, MapView, LayerList, Home, Zoom, Compass, Search, Legend, BasemapToggle, ScaleBar, Attribution,Collapse, Dropdown, CalciteMaps, CalciteMapArcGISSupport) {
 
       /******************************************************************
        *
@@ -183,7 +183,17 @@
         },
         ui: {components: []}
       });
+      
+      // LayerList
+      view.when(function() {
+        var layerList = new LayerList({
+          view: view
+      });
 
+      // Add LayerList to the top left corner of the view
+      view.ui.add(layerList, "top-left");
+      });
+        
       // Popup and panel sync
       mapView.when(function(){
         CalciteMapArcGISSupport.setPopupPanelSync(mapView);
